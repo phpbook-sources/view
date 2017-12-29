@@ -92,7 +92,8 @@
 	//Parameter root must be an array. but you can set any type of value inside.
 	$content = \PHPBook\View\Template::render('path/to/view/one', [
 		'title' => $title, 
-		'jhon' => $jhon, 'friends' => $friends
+		'jhon' => $jhon, 
+		'friends' => $friends
 	]);
 
 	echo $content;
