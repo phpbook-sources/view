@@ -36,7 +36,7 @@
 
 ##### Declare Views
 
-###### View One
+###### View One (one.php)
 
 ```php
 		
@@ -54,7 +54,7 @@
 		
 ```
 
-###### View Two
+###### View Two (two.php)
 
 ```php
 	My View Example Two using another view inside
