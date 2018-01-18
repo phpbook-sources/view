@@ -18,20 +18,21 @@
 
 ##### Declare Configurations
 ```php
-	<?php
+<?php
 
-		/********************************************
-		 * 
-		 *  Declare Configurations
-		 * 
-		 * ******************************************/
-		
-		//Path to views
-		//You can work with dynamic path with $_SERVER
-		//Default "/"
-		\PHPBook\View\Configuration\Template::setDirectory('path\to\views\base\dir');
-	
- 	?>
+/********************************************
+ * 
+ *  Declare Configurations
+ * 
+ * ******************************************/
+
+//Path to views
+
+\PHPBook\View\Configuration\Template::setDirectory('alias', 'path\to\views\base\dir');
+
+\PHPBook\View\Configuration\Template::setDirectory('anotherAlias', 'path\to\another\views\base\dir');
+
+?>
 ```
 
 ##### Declare Views
@@ -59,7 +60,7 @@
 ```php
 	My View Example Two using another view inside
 
-	<?php echo \PHPBook\View\Template::render('path/to/other'); ?>
+	<?php echo \PHPBook\View\Template::render('anotherAlias', 'subpath/to/file/view/one'); ?>
 		
 ```
 
@@ -67,36 +68,37 @@
 
 ```php
 <?php 
-	/*********************************************
-	 * 
-	 *  Rendering Views
-	 * 
-	 * *******************************************/
 
-	$jhon = new StdClass;
-	$jhon->name = 'Jhon';
-	$jhon->age = 15;
+/*********************************************
+ * 
+ *  Rendering Views
+ * 
+ * *******************************************/
 
-	$title = $jhon->name;
+$jhon = new StdClass;
+$jhon->name = 'Jhon';
+$jhon->age = 15;
 
-	$ana = new StdClass;
-	$ana->name = 'Ana';
-	$ana->age = 15;
+$title = $jhon->name;
 
-	$paul = new StdClass;
-	$paul->name = 'Paul';
-	$paul->age = 16;
+$ana = new StdClass;
+$ana->name = 'Ana';
+$ana->age = 15;
 
-	$friends = [$ana, $paul];
+$paul = new StdClass;
+$paul->name = 'Paul';
+$paul->age = 16;
 
-	//Parameter root must be an array. but you can set any type of value inside.
-	$content = \PHPBook\View\Template::render('path/to/view/one', [
-		'title' => $title, 
-		'jhon' => $jhon, 
-		'friends' => $friends
-	]);
+$friends = [$ana, $paul];
 
-	echo $content;
+//Parameter root must be an array. but you can set any type of value inside.
+$content = \PHPBook\View\Template::render('alias', 'subpath/to/file/view/one', [
+	'title' => $title, 
+	'jhon' => $jhon, 
+	'friends' => $friends
+]);
+
+echo $content;
     
 ?>
 ```

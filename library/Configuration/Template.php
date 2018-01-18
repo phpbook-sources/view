@@ -2,14 +2,14 @@
 
 abstract class Template {
     
-    private static $directory = '/';
+    private static $directory = [];
 
-    public static function setDirectory(String $directory) {
-        Static::$directory = $directory;
+    public static function setDirectory(String $alias, String $directory) {
+        Static::$directory[$alias] = $directory;
     }
 
-    public static function getDirectory(): String {
-        return Static::$directory;
+    public static function getDirectory(String $alias): String {
+        return array_key_exists($alias, Static::$directory) ? Static::$directory[$alias] : Null;
     }
 
 }
