@@ -7,8 +7,8 @@ abstract class View {
 		ob_start();
 		
 		extract($data);
-		
-		include Configuration\View::getDirectory($alias) . '/' . $template . '.php';
+
+		include str_replace(['/', '\''], DIRECTORY_SEPARATOR, Configuration\View::getDirectory($alias) . DIRECTORY_SEPARATOR . $template . '.php');
 		
 		$buffer = ob_get_clean();
 		

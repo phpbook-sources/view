@@ -1,10 +1,9 @@
     
 + [About View](#about-view)
 + [Composer Install](#composer-install)
-- [Examples](#examples)
-	* [Declare Configurations](#declare-configurations)
-	* [Declare Views](#declare-views)
-	* [Rendering Views](#rendering-views)
++ [Declare Configurations](#declare-configurations)
++ [Declare Views](#declare-views)
++ [Rendering Views](#rendering-views)
 
 ### About View
 
@@ -14,9 +13,8 @@
 
 	composer require phpbook/view
 
-# Examples
+### Declare Configurations
 
-##### Declare Configurations
 ```php
 <?php
 
@@ -28,14 +26,14 @@
 
 //Path to views
 
-\PHPBook\View\Configuration\Template::setDirectory('alias', 'path\to\views\base\dir');
+\PHPBook\View\Configuration\View::setDirectory('alias', 'path\to\views\base\dir');
 
-\PHPBook\View\Configuration\Template::setDirectory('anotherAlias', 'path\to\another\views\base\dir');
+\PHPBook\View\Configuration\View::setDirectory('anotherAlias', 'path\to\another\views\base\dir');
 
 ?>
 ```
 
-##### Declare Views
+### Declare Views
 
 ###### View One (one.php)
 
@@ -60,11 +58,11 @@
 ```php
 	My View Example Two using another view inside
 
-	<?php echo \PHPBook\View\Template::render('anotherAlias', 'subpath/to/file/view/one'); ?>
+	<?php echo \PHPBook\View\View::render('anotherAlias', 'subpath/to/file/view/one'); ?>
 		
 ```
 
-##### Rendering Views
+### Rendering Views
 
 ```php
 <?php 
@@ -92,7 +90,7 @@ $paul->age = 16;
 $friends = [$ana, $paul];
 
 //Parameter root must be an array. but you can set any type of value inside.
-$content = \PHPBook\View\Template::render('alias', 'subpath/to/file/view/one', [
+$content = \PHPBook\View\View::render('alias', 'subpath/to/file/view/one', [
 	'title' => $title, 
 	'jhon' => $jhon, 
 	'friends' => $friends
