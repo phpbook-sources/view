@@ -24,11 +24,13 @@
  * 
  * ******************************************/
 
-//Path to views
+//Path root to views
 
-\PHPBook\View\Configuration\View::setDirectory('alias', 'path\to\views\base\dir');
+\PHPBook\View\Configuration\View::setViewsPathRoot('main', 'path\to\views\base\dir');
 
-\PHPBook\View\Configuration\View::setDirectory('anotherAlias', 'path\to\another\views\base\dir');
+\PHPBook\View\Configuration\View::setViewsPathRoot('anotherAlias', 'path\to\another\views\base\dir');
+
+\PHPBook\View\Configuration\View::setDefaultPathRoot('main');
 
 ?>
 ```
@@ -56,9 +58,15 @@
 ###### View Two (two.php)
 
 ```php
+
 	My View Example Two using another view inside
 
-	<?php echo \PHPBook\View\View::render('anotherAlias', 'subpath/to/file/view/one'); ?>
+	<?php  
+		echo (new \PHPBook\View\View)
+			->setPathRoot('anotherAlias')
+			->setView('subpath/to/file/view')
+			->render();
+	?>
 		
 ```
 
@@ -89,12 +97,15 @@ $paul->age = 16;
 
 $friends = [$ana, $paul];
 
-//Parameter root must be an array. but you can set any type of value inside.
-$content = \PHPBook\View\View::render('alias', 'subpath/to/file/view/one', [
-	'title' => $title, 
-	'jhon' => $jhon, 
-	'friends' => $friends
-]);
+//data must be an array os values
+$content = (new \PHPBook\View\View)
+	->setView('subpath/to/file/view/one')
+	->setData([
+		'title' => $title, 
+		'jhon' => $jhon, 
+		'friends' => $friends
+	])
+	->render();
 
 echo $content;
     

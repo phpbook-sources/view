@@ -2,14 +2,24 @@
 
 abstract class View {
     
-    private static $directory = [];
+    private static $viewsPathRoot = [];
 
-    public static function setDirectory(String $alias, String $directory) {
-        Static::$directory[$alias] = $directory;
+    private static $defaultPathRoot = null;
+
+    public static function setViewsPathRoot(String $alias, String $viewsPathRoot) {
+        Static::$viewsPathRoot[$alias] = $viewsPathRoot;
     }
 
-    public static function getDirectory(String $alias): String {
-        return array_key_exists($alias, Static::$directory) ? Static::$directory[$alias] : Null;
+    public static function getViewsPathRoot(String $alias): String {
+        return array_key_exists($alias, Static::$viewsPathRoot) ? Static::$viewsPathRoot[$alias] : Null;
+    }
+
+    public static function setDefaultPathRoot(String $defaultPathRoot) {
+        Static::$defaultPathRoot = $defaultPathRoot;
+    }
+
+    public static function getDefaultPathRoot(): String {
+        return Static::$defaultPathRoot;
     }
 
 }
